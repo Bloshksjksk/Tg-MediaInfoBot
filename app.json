@@ -1,0 +1,53 @@
+{
+    "name": "Media",
+    "description": "TrY It AnD CheCK It",
+    "stack": "container",
+    "keywords": [
+      "telegram",
+      "auto-filter",
+      "filter",
+      "best",
+      "indian",
+      "pyrogram",
+      "media",
+      "search",
+      "channel",
+      "index",
+      "inline"
+    ],
+    "website": "https://github.com/LieStage/Mr",
+    "repository": "https://github.com/LieStage/Mr",
+    "env": {
+            "BOT_TOKEN": {
+            "description": "Your bot token.",
+            "required": true
+        },
+        "API_ID": {
+            "description": "Get this value from https://my.telegram.org",
+            "required": true
+        },
+        "API_HASH": {
+            "description": "Get this value from https://my.telegram.org",
+            "required": true
+        },
+        "SUDO_USERID": {
+            "description": "Username or ID of user or. Separate multiple IDs by space.",
+            "required": false
+        },
+        "AUTHORIZED_CHATS": {
+            "description": "If the bot is intended for public use, keep the chat ID as 0. Otherwise, add the name of the chat ID to the list.",
+            "required": false
+        }
+        
+    },
+    "addons": [],
+    "buildpacks": [{
+        "url": "heroku/python"
+    }],
+    "formation": {
+        "worker": {
+            "quantity": 1,
+            "size": "eco"
+        }
+    }
+}
