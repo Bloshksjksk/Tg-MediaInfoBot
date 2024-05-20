@@ -46,8 +46,8 @@ async def generate_videosample_from_link(
     rand_str = randstr()
     output_path = f"download/{rand_str}_{filename}"
 
-    #ffmpeg_command = f"ffmpeg -headers '{headers}' -y -i {file_url} -ss {timestamp} -t 00:0{int(duration)}:00  -c:v copy -c:a copy {output_path}"
-    ffmpeg_command = f"ffmpeg -ss 00:00:0 -i '{download_path}' -t 00:0'{int(duration)}':00 -map 0:v? -map 0:a? -map 0:s? -map 0:d? -c copy '{output_path}'"
+    ffmpeg_command = f"ffmpeg -headers '{headers}' -y -i {file_url} -ss {timestamp} -t 00:0{int(duration)}:00  -c:v copy -c:a copy {output_path}"
+  
     shell_output = await async_subprocess(ffmpeg_command)
 
     if os.path.getsize(output_path) > 1900000000:
@@ -199,7 +199,7 @@ async def telegram_videosample(message, client, duration):
 
         # fixing the file metadata.
         output_path = f"download/{rand_str}_output_{filename}"
-        ffmpeg_command = f"ffmpeg -i '{download_path}' -c copy -metadata duration=10000 '{output_path}'"
+        ffmpeg_command = f"ffmpeg -ss 00:00:0 -i '{download_path}' -t 00:0'{int(duration)}':00 -map 0:v? -map 0:a? -map 0:s? -map 0:d? -c copy '{output_path}'"
         await async_subprocess(ffmpeg_command)
 
         await replymsg.edit("Uploading the video file, Please wait...")
